@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_exit_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 16:33:53 by anass             #+#    #+#             */
-/*   Updated: 2025/04/17 10:38:57 by arokhsi          ###   ########.fr       */
+/*   Created: 2025/04/17 15:15:14 by arokhsi           #+#    #+#             */
+/*   Updated: 2025/04/17 15:15:15 by arokhsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_free_images(t_mlx *mlx)
 {
@@ -21,7 +21,7 @@ void	ft_free_images(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->img->player_right);
 	mlx_destroy_image(mlx->mlx, mlx->img->player_up);
 	mlx_destroy_image(mlx->mlx, mlx->img->wall);
-	free(mlx->img);
+	mlx_destroy_image(mlx->mlx, mlx->img->sasuke);
 }
 
 int	ft_exit(t_mlx *mlx)
@@ -30,8 +30,9 @@ int	ft_exit(t_mlx *mlx)
 	mlx_clear_window(mlx->mlx, mlx->win);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	ft_free_map(mlx->map);
-	free(mlx->mlx);
 	close(mlx->fd);
+	free(mlx->mlx);
+	free(mlx->img);
 	free(mlx);
 	exit(0);
 	return (0);

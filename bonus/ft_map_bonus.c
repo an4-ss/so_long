@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.c                                           :+:      :+:    :+:   */
+/*   ft_map_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 15:08:16 by anass             #+#    #+#             */
-/*   Updated: 2025/04/15 15:20:25 by arokhsi          ###   ########.fr       */
+/*   Created: 2025/04/17 15:16:12 by arokhsi           #+#    #+#             */
+/*   Updated: 2025/04/17 15:16:13 by arokhsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	ft_get_coordinates(char **map, int obg, int axis)
 {
@@ -85,7 +85,7 @@ char	**ft_get_map(int fd)
 	while (++j < i)
 		map[j] = tmp_map[j];
 	map[i] = NULL;
-	map = ft_check_map(map);
+	map = ft_ckeck_map(map);
 	return (map);
 }
 
@@ -107,6 +107,8 @@ void	ft_map_gen(t_mlx *mlx)
 				ft_mlx_print_img(mlx, mlx->img->key, i, j);
 			else if (mlx->map[j][i] == 'E')
 				ft_mlx_print_img(mlx, mlx->img->door, i, j);
+			else if (mlx->map[j][i] == 'B')
+				ft_mlx_print_img(mlx, mlx->img->sasuke, i, j);
 			else
 				ft_mlx_print_img(mlx, mlx->img->floor, i, j);
 			i++;

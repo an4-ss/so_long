@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mlx.c                                           :+:      :+:    :+:   */
+/*   ft_mlx_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 15:02:31 by anass             #+#    #+#             */
-/*   Updated: 2025/04/17 10:39:01 by arokhsi          ###   ########.fr       */
+/*   Created: 2025/04/17 15:16:52 by arokhsi           #+#    #+#             */
+/*   Updated: 2025/04/17 15:16:53 by arokhsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	*ft_create_win(t_mlx *mlx)
 {
@@ -46,7 +46,7 @@ t_mlx	*ft_mlx_init(char *str)
 		return (close(mlx->fd), free(mlx), NULL);
 	mlx->map = ft_get_map(mlx->fd);
 	if (!mlx->map)
-		return (close(mlx->fd), free(mlx->mlx), free(mlx), NULL);
+		return (free(mlx->mlx), close(mlx->fd), free(mlx), NULL);
 	mlx->keys = ft_key_count(mlx->map);
 	if (ft_check_path(mlx))
 		return (ft_return(mlx), free(mlx), NULL);
@@ -62,9 +62,15 @@ t_mlx	*ft_mlx_init(char *str)
 
 void	ft_mlx_print_img(t_mlx *mlx, void *img, int x, int y)
 {
+	char	*steps;
+
 	x *= IMG_SIZE;
 	y *= IMG_SIZE;
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img, x, y);
+	mlx_string_put(mlx->mlx, mlx->win, 5, 12, 0xFF0000, "STEPS : ");
+	steps = ft_itoa(mlx->steps);
+	mlx_string_put(mlx->mlx, mlx->win, 54, 12, 0xFF0000, steps);
+	free(steps);
 }
 
 t_img	*ft_get_images(t_mlx *mlx)
@@ -82,5 +88,6 @@ t_img	*ft_get_images(t_mlx *mlx)
 	img->player_up = mlx_xpm_file_to_image(mlx->mlx, UP, &size, &size);
 	img->player_right = mlx_xpm_file_to_image(mlx->mlx, RIGHT, &size, &size);
 	img->player_left = mlx_xpm_file_to_image(mlx->mlx, LEFT, &size, &size);
+	img->sasuke = mlx_xpm_file_to_image(mlx->mlx, F1, &size, &size);
 	return (img);
 }
