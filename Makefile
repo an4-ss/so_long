@@ -32,7 +32,7 @@ I = -I ./includes/
 L = -L ./libraries/ -lmlx_Linux -lX11 -lXext
 FLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+all: mlx $(NAME)
 bonus: $(BNAME)
 
 $(NAME): $(OBG)
@@ -51,20 +51,22 @@ clean:
 	rm -f $(OBG)
 
 bclean:
-	rm -f $(BOBG) $(NAME)
+	rm -f $(BOBG) $(BNAME)
 
 fclean: bclean clean
-	rm -f $(NAME) $(BNAME)
+	rm -f $(NAME)
 
 re: clean all
 
 .PHONY: clean mlx
 
-mlx:
-	rm -fr minilibx-linux
-	tar -xvzf minilibx-linux.tgz
-	cd minilibx-linux && make
-	cd ..
-	mv minilibx-linux/libmlx_Linux.a .
-	cp minilibx-linux/mlx.h ./includes/.
-	rm -fr minilibx-linux
+mlx: libraries/libmlx_Linux.a
+
+libraries/libmlx_Linux.a:
+	rm -fr minilibx-linux; \
+	tar -xvzf minilibx-linux.tgz; \
+	cd minilibx-linux && make; \
+	cd ..; \
+	mv minilibx-linux/libmlx_Linux.a ./libraries/; \
+	cp minilibx-linux/mlx.h ./includes/; \
+	rm -fr minilibx-linux;
