@@ -29,7 +29,7 @@ BNAME = so_long_bonus
 
 I = -I ./includes/
 
-L = -L ./libraries/ -lmlx_Linux -lX11 -lXext
+L = -L . -lmlx_Linux -lX11 -lXext
 FLAGS = -Wall -Wextra -Werror
 
 all: mlx $(NAME)
@@ -54,19 +54,19 @@ bclean:
 	rm -f $(BOBG) $(BNAME)
 
 fclean: bclean clean
-	rm -f $(NAME)
+	rm -f $(NAME) libmlx_Linux.a ./includes/mlx.h
 
 re: clean all
 
 .PHONY: clean mlx
 
-mlx: libraries/libmlx_Linux.a
+mlx: libmlx_Linux.a
 
-libraries/libmlx_Linux.a:
+libmlx_Linux.a:
 	rm -fr minilibx-linux; \
 	tar -xvzf minilibx-linux.tgz; \
 	cd minilibx-linux && make; \
 	cd ..; \
-	mv minilibx-linux/libmlx_Linux.a ./libraries/; \
+	mv minilibx-linux/libmlx_Linux.a .; \
 	cp minilibx-linux/mlx.h ./includes/; \
 	rm -fr minilibx-linux;
