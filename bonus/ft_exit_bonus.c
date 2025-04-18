@@ -6,7 +6,7 @@
 /*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:15:14 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/17 15:15:15 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/18 15:17:30 by arokhsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ int	ft_exit(t_mlx *mlx)
 	mlx_clear_window(mlx->mlx, mlx->win);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	ft_free_map(mlx->map);
-	close(mlx->fd);
 	free(mlx->mlx);
-	free(mlx->img);
+	close(mlx->fd);
 	free(mlx);
 	exit(0);
 	return (0);

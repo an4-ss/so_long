@@ -1,15 +1,15 @@
-SRC =	srcs/ft_check.c				\
-		srcs/ft_exit.c				\
-		srcs/ft_input.c				\
-		srcs/ft_map.c				\
-		srcs/ft_mlx.c				\
-		srcs/ft_utils.c				\
-		srcs/get_next_line.c		\
-		srcs/get_next_line_utils.c	\
-		srcs/ft_check2.c			\
-		srcs/main.c					\
+SRC =	srcs/ft_check.c						\
+		srcs/ft_exit.c						\
+		srcs/ft_input.c						\
+		srcs/ft_map.c						\
+		srcs/ft_mlx.c						\
+		srcs/ft_utils.c						\
+		srcs/get_next_line.c				\
+		srcs/get_next_line_utils.c			\
+		srcs/ft_check2.c					\
+		srcs/main.c							\
 
-BSRC = 	bonus/ft_animation_bonus.c				\
+BSRC = 	bonus/ft_animation_bonus.c			\
 		bonus/ft_check_bonus.c				\
 		bonus/ft_exit_bonus.c				\
 		bonus/ft_input_bonus.c				\
@@ -41,8 +41,11 @@ $(NAME): $(OBG)
 $(BNAME): $(BOBG)
 	cc $(BOBG) $(L) -o $@
 
-%.o: %.c
-	cc -c $(FLAGS) $(I) $^ -o $@
+$(OBG): %.o: %.c ./includes/get_next_line.h ./includes/so_long.h
+	cc -c $(FLAGS) $(I) $< -o $@
+
+$(BOBG): %.o: %.c ./includes/get_next_line_bonus.h ./includes/so_long_bonus.h
+	cc -c $(FLAGS) $(I) $< -o $@
 
 clean:
 	rm -f $(OBG)
@@ -55,7 +58,7 @@ fclean: bclean clean
 
 re: clean all
 
-.PHONEY: clean mlx
+.PHONY: clean mlx
 
 mlx:
 	rm -fr minilibx-linux
@@ -65,5 +68,3 @@ mlx:
 	mv minilibx-linux/libmlx_Linux.a .
 	cp minilibx-linux/mlx.h ./includes/.
 	rm -fr minilibx-linux
-lldb:
-	clang -g -I ./includes/ srcs/*.c -L ./ -lmlx_Linux -lX11 -lXext -o debugProg
