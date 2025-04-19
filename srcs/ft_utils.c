@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:44:09 by anass             #+#    #+#             */
-/*   Updated: 2025/04/19 01:20:34 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:16:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,11 @@ int	ft_key_count(char **map)
 		j++;
 	}
 	return (count);
+}
+
+void	ft_mlx_print_img(t_mlx *mlx, void *img, int x, int y)
+{
+	x *= IMG_SIZE;
+	y *= IMG_SIZE;
+	mlx_put_image_to_window(mlx->mlx, mlx->win, img, x, y);
 }

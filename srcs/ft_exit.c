@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:33:53 by anass             #+#    #+#             */
-/*   Updated: 2025/04/19 01:16:34 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:25:26 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 void	ft_free_images(t_mlx *mlx)
 {
-	mlx_destroy_image(mlx->mlx, mlx->img->door);
-	mlx_destroy_image(mlx->mlx, mlx->img->floor);
-	mlx_destroy_image(mlx->mlx, mlx->img->key);
-	mlx_destroy_image(mlx->mlx, mlx->img->player_left);
-	mlx_destroy_image(mlx->mlx, mlx->img->player_right);
-	mlx_destroy_image(mlx->mlx, mlx->img->player_up);
-	mlx_destroy_image(mlx->mlx, mlx->img->wall);
+	if (mlx->img->door)
+		mlx_destroy_image(mlx->mlx, mlx->img->door);
+	if (mlx->img->floor)
+		mlx_destroy_image(mlx->mlx, mlx->img->floor);
+	if (mlx->img->key)
+		mlx_destroy_image(mlx->mlx, mlx->img->key);
+	if (mlx->img->player_left)
+		mlx_destroy_image(mlx->mlx, mlx->img->player_left);
+	if (mlx->img->player_right)
+		mlx_destroy_image(mlx->mlx, mlx->img->player_right);
+	if (mlx->img->player_up)
+		mlx_destroy_image(mlx->mlx, mlx->img->player_up);
+	if (mlx->img->wall)
+		mlx_destroy_image(mlx->mlx, mlx->img->wall);
 	free(mlx->img);
 }
 
@@ -29,6 +36,7 @@ int	ft_exit(t_mlx *mlx)
 	ft_free_images(mlx);
 	mlx_clear_window(mlx->mlx, mlx->win);
 	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_display(mlx->mlx);
 	ft_free_map(mlx->map);
 	free(mlx->mlx);
 	close(mlx->fd);

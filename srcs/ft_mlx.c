@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:02:31 by anass             #+#    #+#             */
-/*   Updated: 2025/04/19 01:18:26 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:23:49 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ void	ft_return(t_mlx *mlx)
 	close(mlx->fd);
 }
 
+int	get_images(t_mlx *mlx)
+{
+	t_img	*img;
+	int		size;
+
+	img = malloc(sizeof(t_img));
+	if (!img)
+		return (1);
+	img->door = mlx_xpm_file_to_image(mlx->mlx, DOOR_PATH, &size, &size);
+	img->floor = mlx_xpm_file_to_image(mlx->mlx, FLOOR_PATH, &size, &size);
+	img->key = mlx_xpm_file_to_image(mlx->mlx, KEY_PATH, &size, &size);
+	img->wall = mlx_xpm_file_to_image(mlx->mlx, WALL_PATH, &size, &size);
+	img->player_up = mlx_xpm_file_to_image(mlx->mlx, UP, &size, &size);
+	img->player_right = mlx_xpm_file_to_image(mlx->mlx, RIGHT, &size, &size);
+	img->player_left = mlx_xpm_file_to_image(mlx->mlx, LEFT, &size, &size);
+	mlx->img = img;
+	if (!img->door || !img->floor || !img->key || !img->wall 
+		|| !img->player_left || !img->player_right || !img->player_up)
+		return (1);
+	return (0);
+}
+
 int	ft_mlx_init(t_mlx *mlx, char *str)
 {
 	mlx->fd = open(str, O_RDONLY);
@@ -48,34 +70,10 @@ int	ft_mlx_init(t_mlx *mlx, char *str)
 	mlx->win = ft_create_win(mlx);
 	if (!mlx->win)
 		return (ft_return(mlx), 1);
-	mlx->img = ft_get_images(mlx);
+	if(get_images(mlx))
+		return (ft_exit(mlx), 1);
 	mlx->px = ft_get_coordinates(mlx->map, 'P', 'x');
 	mlx->py = ft_get_coordinates(mlx->map, 'P', 'y');
 	mlx->collected = 0;
 	return (0);
-}
-
-void	ft_mlx_print_img(t_mlx *mlx, void *img, int x, int y)
-{
-	x *= IMG_SIZE;
-	y *= IMG_SIZE;
-	mlx_put_image_to_window(mlx->mlx, mlx->win, img, x, y);
-}
-
-t_img	*ft_get_images(t_mlx *mlx)
-{
-	t_img	*img;
-	int		size;
-
-	img = malloc(sizeof(t_img));
-	if (!img)
-		return (NULL);
-	img->door = mlx_xpm_file_to_image(mlx->mlx, DOOR_PATH, &size, &size);
-	img->floor = mlx_xpm_file_to_image(mlx->mlx, FLOOR_PATH, &size, &size);
-	img->key = mlx_xpm_file_to_image(mlx->mlx, KEY_PATH, &size, &size);
-	img->wall = mlx_xpm_file_to_image(mlx->mlx, WALL_PATH, &size, &size);
-	img->player_up = mlx_xpm_file_to_image(mlx->mlx, UP, &size, &size);
-	img->player_right = mlx_xpm_file_to_image(mlx->mlx, RIGHT, &size, &size);
-	img->player_left = mlx_xpm_file_to_image(mlx->mlx, LEFT, &size, &size);
-	return (img);
 }
