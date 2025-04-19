@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:02:31 by anass             #+#    #+#             */
-/*   Updated: 2025/04/19 03:23:49 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:27:16 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	get_images(t_mlx *mlx)
 	img->player_right = mlx_xpm_file_to_image(mlx->mlx, RIGHT, &size, &size);
 	img->player_left = mlx_xpm_file_to_image(mlx->mlx, LEFT, &size, &size);
 	mlx->img = img;
-	if (!img->door || !img->floor || !img->key || !img->wall 
+	if (!img->door || !img->floor || !img->key || !img->wall
 		|| !img->player_left || !img->player_right || !img->player_up)
 		return (1);
 	return (0);
@@ -70,7 +70,7 @@ int	ft_mlx_init(t_mlx *mlx, char *str)
 	mlx->win = ft_create_win(mlx);
 	if (!mlx->win)
 		return (ft_return(mlx), 1);
-	if(get_images(mlx))
+	if (get_images(mlx))
 		return (ft_exit(mlx), 1);
 	mlx->px = ft_get_coordinates(mlx->map, 'P', 'x');
 	mlx->py = ft_get_coordinates(mlx->map, 'P', 'y');

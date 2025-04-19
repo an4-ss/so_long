@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 12:19:06 by anass             #+#    #+#             */
-/*   Updated: 2025/04/19 01:22:04 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:26:55 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_mov(t_mlx *mlx, int x, int y, int direction)
 static int	ft_can_mov(t_mlx *mlx, int x, int y)
 {
 	int			obg;
-	static	int steps;
+	static int	steps;
 
 	obg = mlx->map[y][x];
 	if (obg == '1' || (obg == 'E' && mlx->collected == 0))
