@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_animation_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:13:15 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/17 15:13:18 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 03:58:26 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	ft_get_frames(t_mlx *mlx)
 		mlx->img->sasuke = mlx_xpm_file_to_image(mlx->mlx, F7, &size, &size);
 	else if (cur == 7)
 		mlx->img->sasuke = mlx_xpm_file_to_image(mlx->mlx, F8, &size, &size);
-	return ;
+	if (!mlx->img->sasuke)
+		ft_exit(mlx);
 }
 
 int	ft_animation(t_mlx *mlx)
