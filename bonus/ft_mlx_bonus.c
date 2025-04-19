@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:16:52 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 03:57:04 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 22:27:09 by arokhsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_get_images(t_mlx *mlx)
 	mlx->img = img;
 	if (!img->door || !img->floor || !img->key || !img->wall
 		|| !img->player_left || !img->player_right || !img->player_up)
-		return (1);
+		return (ft_error_msg(8), 1);
 	return (0);
 }
 

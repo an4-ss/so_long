@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:15:14 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 03:54:05 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 22:30:31 by arokhsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ void	ft_error_msg(unsigned int msg)
 		write(2, "ERROR : Player Can't Win\n", 25);
 	else if (msg == 7)
 		write(2, "ERROR : Map is too large\n", 25);
+	else if (msg == 8)
+		write(2, "ERROR : Missing compenents\n", 27);
 }

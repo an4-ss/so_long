@@ -6,7 +6,7 @@
 /*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:13:15 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 19:52:36 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 22:32:12 by arokhsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void	ft_get_frames(t_mlx *mlx)
 	else if (cur == 7)
 		mlx->img->sasuke = mlx_xpm_file_to_image(mlx->mlx, F8, &size, &size);
 	if (!mlx->img->sasuke)
+	{
+		write(2, "ERROR : Missing compenents\n", 27);
 		ft_exit(mlx);
+	}
 }
 
 int	ft_animation(t_mlx *mlx)
