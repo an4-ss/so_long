@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:16:52 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 03:41:13 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:46:53 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,29 @@ void	ft_return(t_mlx *mlx)
 	close(mlx->fd);
 }
 
+int	ft_get_images(t_mlx *mlx)
+{
+	t_img	*img;
+	int		size;
+
+	img = malloc(sizeof(t_img));
+	if (!img)
+		return (1);
+	img->door = mlx_xpm_file_to_image(mlx->mlx, DOOR_PATH, &size, &size);
+	img->floor = mlx_xpm_file_to_image(mlx->mlx, FLOOR_PATH, &size, &size);
+	img->key = mlx_xpm_file_to_image(mlx->mlx, KEY_PATH, &size, &size);
+	img->wall = mlx_xpm_file_to_image(mlx->mlx, WALL_PATH, &size, &size);
+	img->player_up = mlx_xpm_file_to_image(mlx->mlx, UP, &size, &size);
+	img->player_right = mlx_xpm_file_to_image(mlx->mlx, RIGHT, &size, &size);
+	img->player_left = mlx_xpm_file_to_image(mlx->mlx, LEFT, &size, &size);
+	img->sasuke = mlx_xpm_file_to_image(mlx->mlx, F1, &size, &size);
+	mlx->img = img;
+	if (!img->door || !img->floor || !img->key || !img->wall
+		|| !img->player_left || !img->player_right || !img->player_up)
+		return (1);
+	return (0);
+}
+
 t_mlx	*ft_mlx_init(char *str)
 {
 	t_mlx	*mlx;
@@ -53,7 +76,8 @@ t_mlx	*ft_mlx_init(char *str)
 	mlx->win = ft_create_win(mlx);
 	if (!mlx->win)
 		return (ft_return(mlx), free(mlx), NULL);
-	mlx->img = ft_get_images(mlx);
+	if(ft_get_images(mlx))
+		ft_exit(mlx);
 	mlx->px = ft_get_coordinates(mlx->map, 'P', 'x');
 	mlx->py = ft_get_coordinates(mlx->map, 'P', 'y');
 	mlx->collected = 0;
@@ -72,23 +96,4 @@ void	ft_mlx_print_img(t_mlx *mlx, void *img, int x, int y)
 	steps = ft_itoa(mlx->steps);
 	mlx_string_put(mlx->mlx, mlx->win, 54, 12, 0xFF0000, steps);
 	free(steps);
-}
-
-t_img	*ft_get_images(t_mlx *mlx)
-{
-	t_img	*img;
-	int		size;
-
-	img = malloc(sizeof(t_img));
-	if (!img)
-		return (NULL);
-	img->door = mlx_xpm_file_to_image(mlx->mlx, DOOR_PATH, &size, &size);
-	img->floor = mlx_xpm_file_to_image(mlx->mlx, FLOOR_PATH, &size, &size);
-	img->key = mlx_xpm_file_to_image(mlx->mlx, KEY_PATH, &size, &size);
-	img->wall = mlx_xpm_file_to_image(mlx->mlx, WALL_PATH, &size, &size);
-	img->player_up = mlx_xpm_file_to_image(mlx->mlx, UP, &size, &size);
-	img->player_right = mlx_xpm_file_to_image(mlx->mlx, RIGHT, &size, &size);
-	img->player_left = mlx_xpm_file_to_image(mlx->mlx, LEFT, &size, &size);
-	img->sasuke = mlx_xpm_file_to_image(mlx->mlx, F1, &size, &size);
-	return (img);
 }

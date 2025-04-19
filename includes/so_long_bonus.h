@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:19:13 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/18 16:11:56 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 03:44:53 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ char	*ft_itoa(int n);
 int		ft_key_count(char **map);
 void	ft_win(t_mlx *mlx);
 void	ft_free_map(char **map);
-t_img	*ft_get_images(t_mlx *mlx);
 char	**ft_ckeck_map(char **map);
 int		ft_strlen(char *str);
 char	*ft_strdup(char *s);
