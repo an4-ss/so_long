@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:15:14 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 03:37:37 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:43:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_free_images(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx, mlx->img->player_up);
 	if (mlx->img->wall)
 		mlx_destroy_image(mlx->mlx, mlx->img->wall);
+	if (mlx->img->sasuke)
+		mlx_destroy_image(mlx->mlx, mlx->img->sasuke);
 	free(mlx->img);
 }
 
@@ -36,6 +38,7 @@ int	ft_exit(t_mlx *mlx)
 	ft_free_images(mlx);
 	mlx_clear_window(mlx->mlx, mlx->win);
 	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_display(mlx->mlx);
 	ft_free_map(mlx->map);
 	free(mlx->mlx);
 	close(mlx->fd);

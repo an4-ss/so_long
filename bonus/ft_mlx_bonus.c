@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:16:52 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/17 15:16:53 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 03:41:13 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_mlx	*ft_mlx_init(char *str)
 	mlx->px = ft_get_coordinates(mlx->map, 'P', 'x');
 	mlx->py = ft_get_coordinates(mlx->map, 'P', 'y');
 	mlx->collected = 0;
+	mlx->steps = 0;
 	return (mlx);
 }
 

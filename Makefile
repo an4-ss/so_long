@@ -33,7 +33,7 @@ L = -L . -lmlx_Linux -lX11 -lXext
 FLAGS = -Wall -Wextra -Werror
 
 all: mlx $(NAME)
-bonus: $(BNAME)
+bonus: mlx $(BNAME)
 
 $(NAME): $(OBG)
 	cc $(OBG) $(L) -o $@
@@ -48,15 +48,12 @@ $(BOBG): %.o: %.c ./includes/get_next_line_bonus.h ./includes/so_long_bonus.h
 	cc -c $(FLAGS) $(I) $< -o $@
 
 clean:
-	rm -f $(OBG)
+	rm -f $(OBG) $(BOBG)
 
-bclean:
-	rm -f $(BOBG) $(BNAME)
+fclean: clean
+	rm -f $(NAME) $(BNAME)
 
-fclean: bclean clean
-	rm -f $(NAME) libmlx_Linux.a ./includes/mlx.h
-
-re: clean all
+re: fclean all
 
 .PHONY: clean mlx
 
