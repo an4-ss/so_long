@@ -3,51 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anass <anass@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:44:09 by anass             #+#    #+#             */
-/*   Updated: 2025/03/30 15:40:25 by anass            ###   ########.fr       */
+/*   Updated: 2025/04/19 01:20:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_nblen(int n)
+void	ft_putnbr(int n)
 {
-	int	length;
+	char	c;
 
-	if (n <= 0)
-		length = 1;
-	else
-		length = 0;
-	while (n)
+	if (n == -2147483648)
 	{
-		n /= 10;
-		length++;
+		write(1, "-", 1);
+		write(1, "2", 1);
+		n = 147483648;
 	}
-	return (length);
-}
-
-char	*ft_itoa(int n)
-{
-	char	*ret;
-	int		len;
-	long	nb;
-
-	nb = n;
-	len = ft_nblen(n);
-	ret = (char *)malloc(len + 1);
-	if (!ret)
-		return (NULL);
-	ret[len] = '\0';
-	if (nb == 0)
-		ret[0] = '0';
-	while (nb > 0)
+	if (n < 0)
 	{
-		ret[--len] = (nb % 10) + '0';
-		nb /= 10;
+		write(1, "-", 1);
+		n = -n;
 	}
-	return (ret);
+	if (n >= 10)
+		ft_putnbr(n / 10);
+	c = n % 10 + '0';
+	write(1, &c, 1);
 }
 
 int	ft_key_count(char **map)

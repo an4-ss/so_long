@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:02:31 by anass             #+#    #+#             */
-/*   Updated: 2025/04/17 10:39:01 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 01:18:26 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,28 @@ void	ft_return(t_mlx *mlx)
 	close(mlx->fd);
 }
 
-t_mlx	*ft_mlx_init(char *str)
+int	ft_mlx_init(t_mlx *mlx, char *str)
 {
-	t_mlx	*mlx;
-
-	mlx = malloc(sizeof(t_mlx));
-	if (!mlx)
-		return (NULL);
 	mlx->fd = open(str, O_RDONLY);
 	if (mlx->fd < 0)
-		return (free(mlx), NULL);
+		return (1);
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
-		return (close(mlx->fd), free(mlx), NULL);
+		return (close(mlx->fd), 1);
 	mlx->map = ft_get_map(mlx->fd);
 	if (!mlx->map)
-		return (close(mlx->fd), free(mlx->mlx), free(mlx), NULL);
+		return (close(mlx->fd), free(mlx->mlx), 1);
 	mlx->keys = ft_key_count(mlx->map);
 	if (ft_check_path(mlx))
-		return (ft_return(mlx), free(mlx), NULL);
+		return (ft_return(mlx), 1);
 	mlx->win = ft_create_win(mlx);
 	if (!mlx->win)
-		return (ft_return(mlx), free(mlx), NULL);
+		return (ft_return(mlx), 1);
 	mlx->img = ft_get_images(mlx);
 	mlx->px = ft_get_coordinates(mlx->map, 'P', 'x');
 	mlx->py = ft_get_coordinates(mlx->map, 'P', 'y');
 	mlx->collected = 0;
-	return (mlx);
+	return (0);
 }
 
 void	ft_mlx_print_img(t_mlx *mlx, void *img, int x, int y)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:56:56 by anass             #+#    #+#             */
-/*   Updated: 2025/04/18 16:43:45 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 01:20:51 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,18 @@ typedef struct s_mlx
 	int		steps;
 }t_mlx;
 
-t_mlx	*ft_mlx_init(char *str);
+int		ft_mlx_init(t_mlx *mlx, char *str);
 char	**ft_get_map(int fd);
 int		ft_input(int keycode, t_mlx *mlx);
 void	ft_map_gen(t_mlx *mlx);
 void	ft_mlx_print_img(t_mlx *mlx, void *img, int x, int y);
 int		ft_exit(t_mlx *mlx);
 int		ft_get_coordinates(char **map, int obg, int axis);
-char	*ft_itoa(int n);
+void	ft_putnbr(int n);
 int		ft_key_count(char **map);
 void	ft_free_map(char **map);
 t_img	*ft_get_images(t_mlx *mlx);
 char	**ft_check_map(char **map);
-int		ft_strlen(char *str);
 char	*ft_strdup(char *s);
 int		ft_check_extension(char *path);
 int		ft_check_path(t_mlx *mlx);

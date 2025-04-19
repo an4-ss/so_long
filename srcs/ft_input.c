@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_input.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 12:19:06 by anass             #+#    #+#             */
-/*   Updated: 2025/04/17 10:50:10 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 01:22:04 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,16 @@ static void	ft_mov(t_mlx *mlx, int x, int y, int direction)
 
 static int	ft_can_mov(t_mlx *mlx, int x, int y)
 {
-	int		obg;
-	char	*steps;
+	int			obg;
+	static	int steps;
 
 	obg = mlx->map[y][x];
 	if (obg == '1' || (obg == 'E' && mlx->collected == 0))
 		return (0);
 	else
 	{
-		steps = ft_itoa(mlx->steps++);
-		write(1, steps, ft_strlen(steps));
-		free(steps);
-		write(1, "\n", 1);
+		ft_putnbr(++steps);
+		write (1, "\n", 1);
 	}
 	return (1);
 }

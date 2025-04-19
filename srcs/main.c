@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:56:14 by anass             #+#    #+#             */
-/*   Updated: 2025/04/17 10:46:10 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 01:22:41 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@ void	ft_start(t_mlx *mlx)
 
 int	main(int argc, char *argv[])
 {
-	t_mlx	*mlx;
+	t_mlx	mlx;
 
 	if (argc != 2 || ft_check_extension(argv[1]))
 		return (-1);
-	mlx = ft_mlx_init(argv[1]);
-	if (!mlx)
+	if (ft_mlx_init(&mlx, argv[1]))
 		return (-1);
-	ft_start(mlx);
-	mlx_key_hook(mlx->win, ft_input, mlx);
-	mlx_hook(mlx->win, 17, 0, ft_exit, mlx);
-	mlx_loop(mlx->mlx);
+	ft_start(&mlx);
+	mlx_key_hook(mlx.win, ft_input, &mlx);
+	mlx_hook(mlx.win, 17, 0, ft_exit, &mlx);
+	mlx_loop(mlx.mlx);
 	return (0);
 }

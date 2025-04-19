@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arokhsi <arokhsi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:33:53 by anass             #+#    #+#             */
-/*   Updated: 2025/04/18 15:19:03 by arokhsi          ###   ########.fr       */
+/*   Updated: 2025/04/19 01:16:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_exit(t_mlx *mlx)
 	ft_free_map(mlx->map);
 	free(mlx->mlx);
 	close(mlx->fd);
-	free(mlx);
 	exit(0);
 	return (0);
 }
