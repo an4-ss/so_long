@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:17:11 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 03:54:58 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:56:30 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2 || ft_check_extension(argv[1]))
 		return (-1);
-	if(ft_mlx_init(&mlx, argv[1]))
+	if (ft_mlx_init(&mlx, argv[1]))
 		return (-1);
 	ft_start(&mlx);
 	mlx_key_hook(mlx.win, ft_input, &mlx);
