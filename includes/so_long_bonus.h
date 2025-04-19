@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:19:13 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 03:44:53 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:54:21 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_mlx
 	void	*player;
 }t_mlx;
 
-t_mlx	*ft_mlx_init(char *str);
+int		ft_mlx_init(t_mlx *mlx, char *str);
 char	**ft_get_map(int fd);
 int		ft_input(int keycode, t_mlx *mlx);
 void	ft_map_gen(t_mlx *mlx);

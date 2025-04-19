@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:15:14 by arokhsi           #+#    #+#             */
-/*   Updated: 2025/04/19 03:43:48 by wimam            ###   ########.fr       */
+/*   Updated: 2025/04/19 03:54:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ft_exit(t_mlx *mlx)
 	ft_free_map(mlx->map);
 	free(mlx->mlx);
 	close(mlx->fd);
-	free(mlx);
 	exit(0);
 	return (0);
 }
